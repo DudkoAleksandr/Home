@@ -76,3 +76,10 @@
 
 // Результат нужно выводить на страницу, он включает:
 // минимальное, максимальное и среднее арифметическое значение. И сколько раз встречается каждая оценка
+
+const input = document.querySelector('.input')
+const btn = document.querySelector('.btn')
+
+btn.addEventListener('click', () => {
+    console.log(1 + 1)
+})
