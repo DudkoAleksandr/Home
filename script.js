@@ -54,7 +54,7 @@
 //     summ = summ + num;
 
 //   }
-  
+
 //   average = summ / grades.length;
 
 //   for (let numObj in obj) {
@@ -77,9 +77,52 @@
 // Результат нужно выводить на страницу, он включает:
 // минимальное, максимальное и среднее арифметическое значение. И сколько раз встречается каждая оценка
 
-const input = document.querySelector('.input')
-const btn = document.querySelector('.btn')
+const input = document.querySelector(".input");
+const btn = document.querySelector(".btn");
+const result = document.querySelector(".result");
 
-btn.addEventListener('click', () => {
-    console.log(1 + 1)
-})
+btn.addEventListener("click", () => {
+  const resultObj = {};
+  let min = Infinity;
+  let max = 0;
+  let sum = 0;
+  let average = 0;
+
+  let numberValue = input.value.split(",");
+
+  for (let keyNum of numberValue) {
+    if (resultObj[keyNum] === undefined) {
+      resultObj[keyNum] = 1;
+    } else {
+      resultObj[keyNum]++;
+    }
+  }
+
+  for (key in resultObj) {
+    if (key > max) {
+      max = key;
+    }
+
+    if (key < min) {
+      min = key;
+    }
+
+    const pSr = document.createElement("p");
+    pSr.innerHTML = `Оценка ${key} повторяется ${resultObj[key]} раз`;
+    result.append(pSr);
+  }
+  sum = min + max;
+  average = sum / input.value.length;
+
+  const pMax = document.createElement("p");
+  pMax.innerHTML = `Максимальная оценка: ${max}`;
+  result.append(pMax);
+
+  const pMin = document.createElement("p");
+  pMin.innerHTML = `Минимальная оценка: ${min}`;
+  result.append(pMin);
+
+  const pAverage = document.createElement("p");
+  pAverage.innerHTML = `Средняя оценка: ${average}`;
+  result.append(pAverage);
+});
